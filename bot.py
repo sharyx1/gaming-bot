@@ -1,0 +1,141 @@
+import asyncio
+import os
+from aiogram import Bot, Dispatcher, F
+from aiogram.filters import CommandStart
+from aiogram.types import Message, CallbackQuery
+from aiogram.utils.keyboard import InlineKeyboardBuilder
+
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+
+bot = Bot(token=TELEGRAM_TOKEN)
+dp = Dispatcher()
+
+# ───────────── ТЕКСТЫ ─────────────
+
+START_TEXT = """<b>Об AI GameBot</b>
+
+Мы — проект для настоящих геймеров, которые хотят честную, глубокую информацию без коммерческих фильтров.
+
+<b>Наша миссия</b>
+Помочь тебе открывать лучшие игры, прокачивать навыки и получать максимум удовольствия от каждой игровой сессии — независимо от уровня и платформы.
+
+<b>Что предлагаем</b>
+- Честные обзоры игр
+- Советы и гайды для всех уровней
+- Актуальные новости гейминга
+- Постоянные обновления
+
+<b>Технология</b>
+Подборки и материалы от экспертов игровой индустрии.
+
+<b>Контакт:</b> скоро"""
+
+MENU_TEXT = """🎮 <b>Главное меню</b>
+
+Выбери раздел:"""
+
+REVIEWS_TEXT = """🕹 <b>Обзоры игр</b>
+
+<b>Elden Ring</b>
+Шедевр от FromSoftware. Открытый мир, жёсткие боссы, невероятная атмосфера. Обязателен для тех, кто любит вызов.
+⭐️ 10/10
+
+<b>Baldur's Gate 3</b>
+Лучшая RPG последних лет. Огромная свобода выбора, живые персонажи, сотни часов контента.
+⭐️ 10/10
+
+<b>Cyberpunk 2077</b>
+После патчей — совсем другая игра. Мощный сюжет, атмосфера киберпанка, отличный открытый мир.
+⭐️ 9/10"""
+
+GUIDES_TEXT = """📖 <b>Советы и гайды</b>
+
+<b>5 советов для любого геймера:</b>
+
+1️⃣ <b>Изучи механики</b> — потрать 30 минут на туториал, сэкономишь часы потом
+
+2️⃣ <b>Меняй чувствительность</b> — правильные настройки управления решают половину дела
+
+3️⃣ <b>Делай паузы</b> — каждые 1.5 часа. Реакция и концентрация падают без отдыха
+
+4️⃣ <b>Смотри реплеи</b> — анализируй свои ошибки как в спорте
+
+5️⃣ <b>Играй в комфорте</b> — освещение, поза, гарнитура влияют на результат"""
+
+NEWS_TEXT = """📰 <b>Новости гейминга</b>
+
+🔥 <b>GTA VI</b>
+Rockstar подтвердили выход в 2025. Действие в Майами, два главных героя, революционный открытый мир.
+
+🔥 <b>Nintendo Switch 2</b>
+Вышла в 2025. Обратная совместимость, улучшенный экран, новый Joy-Con с магнитным креплением.
+
+🔥 <b>Xbox Game Pass</b>
+Microsoft продолжает добавлять AAA-игры в день релиза. Один из лучших сервисов для геймеров.
+
+🔥 <b>Инди-сцена</b>
+2024-2025 — золотое время инди. Следи за Steam Next Fest — там всегда свежие жемчужины."""
+
+
+# ───────────── КЛАВИАТУРЫ ─────────────
+
+def start_kb():
+    b = InlineKeyboardBuilder()
+    b.button(text="Главное меню", callback_data="main_menu")
+    return b.as_markup()
+
+def main_menu_kb():
+    b = InlineKeyboardBuilder()
+    b.button(text="🕹 Обзоры игр", callback_data="reviews")
+    b.button(text="📖 Советы и гайды", callback_data="guides")
+    b.button(text="📰 Новости гейминга", callback_data="news")
+    b.adjust(2)
+    return b.as_markup()
+
+def back_kb():
+    b = InlineKeyboardBuilder()
+    b.button(text="◀️ В меню", callback_data="main_menu")
+    return b.as_markup()
+
+
+# ───────────── ХЕНДЛЕРЫ ─────────────
+
+@dp.message(CommandStart())
+async def cmd_start(message: Message):
+    await message.answer(START_TEXT, parse_mode="HTML", reply_markup=start_kb())
+
+@dp.callback_query(F.data == "main_menu")
+async def cb_main_menu(callback: CallbackQuery):
+    await callback.message.answer(MENU_TEXT, parse_mode="HTML", reply_markup=main_menu_kb())
+    await callback.answer()
+
+@dp.callback_query(F.data == "reviews")
+async def cb_reviews(callback: CallbackQuery):
+    await callback.message.answer(REVIEWS_TEXT, parse_mode="HTML", reply_markup=back_kb())
+    await callback.answer()
+
+@dp.callback_query(F.data == "guides")
+async def cb_guides(callback: CallbackQuery):
+    await callback.message.answer(GUIDES_TEXT, parse_mode="HTML", reply_markup=back_kb())
+    await callback.answer()
+
+@dp.callback_query(F.data == "news")
+async def cb_news(callback: CallbackQuery):
+    await callback.message.answer(NEWS_TEXT, parse_mode="HTML", reply_markup=back_kb())
+    await callback.answer()
+
+@dp.message()
+async def handle_message(message: Message):
+    await message.answer(
+        "Используй меню для навигации 👇",
+        reply_markup=start_kb()
+    )
+
+
+# ───────────── ЗАПУСК ─────────────
+
+async def main():
+    await dp.start_polling(bot)
+
+if __name__ == "__main__":
+    asyncio.run(main())
