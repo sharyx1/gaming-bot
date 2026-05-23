@@ -1,16 +1,11 @@
-import asyncio
 import os
-from aiogram import Bot, Dispatcher, F
-from aiogram.filters import CommandStart
-from aiogram.types import Message, CallbackQuery
-from aiogram.utils.keyboard import InlineKeyboardBuilder
+from aiogram import Bot, Dispatcher, executor, types
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 
 bot = Bot(token=TELEGRAM_TOKEN)
-dp = Dispatcher()
-
-# ───────────── ТЕКСТЫ ─────────────
+dp = Dispatcher(bot)
 
 START_TEXT = """<b>Об AI GameBot</b>
 
@@ -77,65 +72,54 @@ Microsoft продолжает добавлять AAA-игры в день ре�
 2024-2025 — золотое время инди. Следи за Steam Next Fest — там всегда свежие жемчужины."""
 
 
-# ───────────── КЛАВИАТУРЫ ─────────────
-
 def start_kb():
-    b = InlineKeyboardBuilder()
-    b.button(text="Главное меню", callback_data="main_menu")
-    return b.as_markup()
+    kb = InlineKeyboardMarkup()
+    kb.add(InlineKeyboardButton("Главное меню", callback_data="main_menu"))
+    return kb
 
 def main_menu_kb():
-    b = InlineKeyboardBuilder()
-    b.button(text="🕹 Обзоры игр", callback_data="reviews")
-    b.button(text="📖 Советы и гайды", callback_data="guides")
-    b.button(text="📰 Новости гейминга", callback_data="news")
-    b.adjust(2)
-    return b.as_markup()
+    kb = InlineKeyboardMarkup(row_width=2)
+    kb.add(
+        InlineKeyboardButton("🕹 Обзоры игр", callback_data="reviews"),
+        InlineKeyboardButton("📖 Советы и гайды", callback_data="guides"),
+        InlineKeyboardButton("📰 Новости гейминга", callback_data="news"),
+    )
+    return kb
 
 def back_kb():
-    b = InlineKeyboardBuilder()
-    b.button(text="◀️ В меню", callback_data="main_menu")
-    return b.as_markup()
+    kb = InlineKeyboardMarkup()
+    kb.add(InlineKeyboardButton("◀️ В меню", callback_data="main_menu"))
+    return kb
 
 
-# ───────────── ХЕНДЛЕРЫ ─────────────
-
-@dp.message(CommandStart())
-async def cmd_start(message: Message):
+@dp.message_handler(commands=["start"])
+async def cmd_start(message: types.Message):
     await message.answer(START_TEXT, parse_mode="HTML", reply_markup=start_kb())
 
-@dp.callback_query(F.data == "main_menu")
-async def cb_main_menu(callback: CallbackQuery):
+@dp.callback_query_handler(lambda c: c.data == "main_menu")
+async def cb_main_menu(callback: types.CallbackQuery):
     await callback.message.answer(MENU_TEXT, parse_mode="HTML", reply_markup=main_menu_kb())
     await callback.answer()
 
-@dp.callback_query(F.data == "reviews")
-async def cb_reviews(callback: CallbackQuery):
+@dp.callback_query_handler(lambda c: c.data == "reviews")
+async def cb_reviews(callback: types.CallbackQuery):
     await callback.message.answer(REVIEWS_TEXT, parse_mode="HTML", reply_markup=back_kb())
     await callback.answer()
 
-@dp.callback_query(F.data == "guides")
-async def cb_guides(callback: CallbackQuery):
+@dp.callback_query_handler(lambda c: c.data == "guides")
+async def cb_guides(callback: types.CallbackQuery):
     await callback.message.answer(GUIDES_TEXT, parse_mode="HTML", reply_markup=back_kb())
     await callback.answer()
 
-@dp.callback_query(F.data == "news")
-async def cb_news(callback: CallbackQuery):
+@dp.callback_query_handler(lambda c: c.data == "news")
+async def cb_news(callback: types.CallbackQuery):
     await callback.message.answer(NEWS_TEXT, parse_mode="HTML", reply_markup=back_kb())
     await callback.answer()
 
-@dp.message()
-async def handle_message(message: Message):
-    await message.answer(
-        "Используй меню для навигации 👇",
-        reply_markup=start_kb()
-    )
+@dp.message_handler()
+async def handle_message(message: types.Message):
+    await message.answer("Используй меню для навигации 👇", reply_markup=start_kb())
 
-
-# ───────────── ЗАПУСК ─────────────
-
-async def main():
-    await dp.start_polling(bot)
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    executor.start_polling(dp, skip_updates=True)
