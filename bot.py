@@ -7,88 +7,88 @@ TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 bot = Bot(token=TELEGRAM_TOKEN)
 dp = Dispatcher(bot)
 
-START_TEXT = """<b>Об AI GameBot</b>
+START_TEXT = """<b>Tentang AI GameBot</b>
 
-Мы — проект для настоящих геймеров, которые хотят честную, глубокую информацию без коммерческих фильтров.
+Kami adalah proyek untuk para gamer sejati yang menginginkan informasi jujur, mendalam, dan bebas dari filter komersial.
 
-<b>Наша миссия</b>
-Помочь тебе открывать лучшие игры, прокачивать навыки и получать максимум удовольствия от каждой игровой сессии — независимо от уровня и платформы.
+<b>Misi Kami</b>
+Membantu kamu menemukan game terbaik, meningkatkan skill, dan mendapatkan pengalaman bermain maksimal — untuk semua level dan platform.
 
-<b>Что предлагаем</b>
-- Честные обзоры игр
-- Советы и гайды для всех уровней
-- Актуальные новости гейминга
-- Постоянные обновления
+<b>Yang Kami Tawarkan</b>
+- Ulasan game yang jujur
+- Tips dan panduan untuk semua level
+- Berita gaming terkini
+- Update rutin
 
-<b>Технология</b>
-Подборки и материалы от экспертов игровой индустрии.
+<b>Teknologi</b>
+Konten pilihan dari para ahli industri game.
 
-<b>Контакт:</b> скоро"""
+<b>Kontak:</b> segera hadir"""
 
-MENU_TEXT = """🎮 <b>Главное меню</b>
+MENU_TEXT = """🎮 <b>Menu Utama</b>
 
-Выбери раздел:"""
+Pilih kategori:"""
 
-REVIEWS_TEXT = """🕹 <b>Обзоры игр</b>
+REVIEWS_TEXT = """🕹 <b>Ulasan Game</b>
 
 <b>Elden Ring</b>
-Шедевр от FromSoftware. Открытый мир, жёсткие боссы, невероятная атмосфера. Обязателен для тех, кто любит вызов.
+Mahakarya dari FromSoftware. Dunia terbuka, bos yang menantang, atmosfer luar biasa. Wajib dimainkan bagi yang suka tantangan.
 ⭐️ 10/10
 
 <b>Baldur's Gate 3</b>
-Лучшая RPG последних лет. Огромная свобода выбора, живые персонажи, сотни часов контента.
+RPG terbaik dalam beberapa tahun terakhir. Kebebasan pilihan yang luar biasa, karakter hidup, ratusan jam konten.
 ⭐️ 10/10
 
 <b>Cyberpunk 2077</b>
-После патчей — совсем другая игра. Мощный сюжет, атмосфера киберпанка, отличный открытый мир.
+Setelah berbagai patch — game yang benar-benar berbeda. Cerita kuat, atmosfer cyberpunk, open world yang keren.
 ⭐️ 9/10"""
 
-GUIDES_TEXT = """📖 <b>Советы и гайды</b>
+GUIDES_TEXT = """📖 <b>Tips & Panduan</b>
 
-<b>5 советов для любого геймера:</b>
+<b>5 Tips untuk Semua Gamer:</b>
 
-1️⃣ <b>Изучи механики</b> — потрать 30 минут на туториал, сэкономишь часы потом
+1️⃣ <b>Pelajari mekanik</b> — luangkan 30 menit untuk tutorial, hemat berjam-jam setelahnya
 
-2️⃣ <b>Меняй чувствительность</b> — правильные настройки управления решают половину дела
+2️⃣ <b>Atur sensitivitas</b> — pengaturan kontrol yang tepat menentukan setengah dari permainan
 
-3️⃣ <b>Делай паузы</b> — каждые 1.5 часа. Реакция и концентрация падают без отдыха
+3️⃣ <b>Ambil jeda</b> — setiap 1,5 jam. Reaksi dan konsentrasi menurun tanpa istirahat
 
-4️⃣ <b>Смотри реплеи</b> — анализируй свои ошибки как в спорте
+4️⃣ <b>Tonton replay</b> — analisis kesalahanmu seperti dalam olahraga
 
-5️⃣ <b>Играй в комфорте</b> — освещение, поза, гарнитура влияют на результат"""
+5️⃣ <b>Bermain dengan nyaman</b> — pencahayaan, postur, dan headset mempengaruhi hasil"""
 
-NEWS_TEXT = """📰 <b>Новости гейминга</b>
+NEWS_TEXT = """📰 <b>Berita Gaming</b>
 
 🔥 <b>GTA VI</b>
-Rockstar подтвердили выход в 2025. Действие в Майами, два главных героя, революционный открытый мир.
+Rockstar mengkonfirmasi rilis di 2025. Berlatar di Miami, dua karakter utama, open world yang revolusioner.
 
 🔥 <b>Nintendo Switch 2</b>
-Вышла в 2025. Обратная совместимость, улучшенный экран, новый Joy-Con с магнитным креплением.
+Rilis di 2025. Kompatibilitas mundur, layar yang ditingkatkan, Joy-Con baru dengan pemasangan magnetik.
 
 🔥 <b>Xbox Game Pass</b>
-Microsoft продолжает добавлять AAA-игры в день релиза. Один из лучших сервисов для геймеров.
+Microsoft terus menambahkan game AAA di hari rilis. Salah satu layanan terbaik untuk gamer.
 
-🔥 <b>Инди-сцена</b>
-2024-2025 — золотое время инди. Следи за Steam Next Fest — там всегда свежие жемчужины."""
+🔥 <b>Indie Scene</b>
+2024-2025 adalah era emas indie. Pantau Steam Next Fest — selalu ada permata baru di sana."""
 
 
 def start_kb():
     kb = InlineKeyboardMarkup()
-    kb.add(InlineKeyboardButton("Главное меню", callback_data="main_menu"))
+    kb.add(InlineKeyboardButton("Menu Utama", callback_data="main_menu"))
     return kb
 
 def main_menu_kb():
     kb = InlineKeyboardMarkup(row_width=2)
     kb.add(
-        InlineKeyboardButton("🕹 Обзоры игр", callback_data="reviews"),
-        InlineKeyboardButton("📖 Советы и гайды", callback_data="guides"),
-        InlineKeyboardButton("📰 Новости гейминга", callback_data="news"),
+        InlineKeyboardButton("🕹 Ulasan Game", callback_data="reviews"),
+        InlineKeyboardButton("📖 Tips & Panduan", callback_data="guides"),
+        InlineKeyboardButton("📰 Berita Gaming", callback_data="news"),
     )
     return kb
 
 def back_kb():
     kb = InlineKeyboardMarkup()
-    kb.add(InlineKeyboardButton("◀️ В меню", callback_data="main_menu"))
+    kb.add(InlineKeyboardButton("◀️ Menu", callback_data="main_menu"))
     return kb
 
 
@@ -118,7 +118,7 @@ async def cb_news(callback: types.CallbackQuery):
 
 @dp.message_handler()
 async def handle_message(message: types.Message):
-    await message.answer("Используй меню для навигации 👇", reply_markup=start_kb())
+    await message.answer("Gunakan menu untuk navigasi 👇", reply_markup=start_kb())
 
 
 if __name__ == "__main__":
