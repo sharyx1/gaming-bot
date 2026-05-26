@@ -15,61 +15,111 @@ Kami adalah proyek untuk para gamer sejati yang menginginkan informasi jujur, me
 Membantu kamu menemukan game terbaik, meningkatkan skill, dan mendapatkan pengalaman bermain maksimal — untuk semua level dan platform.
 
 <b>Yang Kami Tawarkan</b>
-- Ulasan game yang jujur
+- Ulasan game yang jujur dan detail
 - Tips dan panduan untuk semua level
 - Berita gaming terkini
-- Update rutin
+- Update rutin tentang industri game
 
 <b>Teknologi</b>
-Konten pilihan dari para ahli industri game.
-
-<b>Kontak:</b> segera hadir"""
+Konten pilihan dari para ahli industri game."""
 
 MENU_TEXT = """🎮 <b>Menu Utama</b>
 
-Pilih kategori:"""
+Pilih kategori yang ingin kamu jelajahi:"""
 
 REVIEWS_TEXT = """🕹 <b>Ulasan Game</b>
 
 <b>Elden Ring</b>
-Mahakarya dari FromSoftware. Dunia terbuka, bos yang menantang, atmosfer luar biasa. Wajib dimainkan bagi yang suka tantangan.
+Mahakarya dari FromSoftware. Dunia terbuka yang luas, bos yang menantang, atmosfer luar biasa. Wajib dimainkan bagi yang suka tantangan tinggi.
 ⭐️ 10/10
 
 <b>Baldur's Gate 3</b>
-RPG terbaik dalam beberapa tahun terakhir. Kebebasan pilihan yang luar biasa, karakter hidup, ratusan jam konten.
+RPG terbaik dalam beberapa tahun terakhir. Kebebasan pilihan yang luar biasa, karakter yang hidup, ratusan jam konten. Masterpiece modern.
 ⭐️ 10/10
 
 <b>Cyberpunk 2077</b>
-Setelah berbagai patch — game yang benar-benar berbeda. Cerita kuat, atmosfer cyberpunk, open world yang keren.
-⭐️ 9/10"""
+Setelah berbagai patch — game yang benar-benar berbeda dan layak dimainkan. Cerita kuat, atmosfer cyberpunk yang unik, open world yang imersif.
+⭐️ 9/10
+
+<b>Baldur's Gate 3</b>
+Game strategi yang challenging dengan mekanik unik. Cocok untuk pemain yang menginginkan pengalaman berbeda dan depth gameplay.
+⭐️ 8/10"""
 
 GUIDES_TEXT = """📖 <b>Tips & Panduan</b>
 
 <b>5 Tips untuk Semua Gamer:</b>
 
-1️⃣ <b>Pelajari mekanik</b> — luangkan 30 menit untuk tutorial, hemat berjam-jam setelahnya
+1️⃣ <b>Pelajari mekanik</b> — luangkan 30 menit untuk tutorial, hemat berjam-jam bermain setelahnya dengan pemahaman yang benar
 
-2️⃣ <b>Atur sensitivitas</b> — pengaturan kontrol yang tepat menentukan setengah dari permainan
+2️⃣ <b>Atur sensitivitas</b> — pengaturan kontrol yang tepat menentukan setengah dari performa bermain kamu
 
-3️⃣ <b>Ambil jeda</b> — setiap 1,5 jam. Reaksi dan konsentrasi menurun tanpa istirahat
+3️⃣ <b>Ambil jeda rutin</b> — setiap 1,5 jam. Reaksi dan konsentrasi menurun signifikan tanpa istirahat
 
-4️⃣ <b>Tonton replay</b> — analisis kesalahanmu seperti dalam olahraga
+4️⃣ <b>Tonton dan analisis replay</b> — analisis kesalahanmu seperti dalam olahraga profesional
 
-5️⃣ <b>Bermain dengan nyaman</b> — pencahayaan, postur, dan headset mempengaruhi hasil"""
+5️⃣ <b>Bermain dengan nyaman</b> — pencahayaan ruangan, postur duduk, dan headset berkualitas mempengaruhi hasil gameplay
+
+<b>Tips Bonus:</b>
+- Jangan bermain dalam keadaan lelah atau emosi tinggi
+- Atur brightness monitor sesuai pencahayaan ruangan
+- Gunakan mouse pad yang cukup besar untuk game FPS"""
 
 NEWS_TEXT = """📰 <b>Berita Gaming</b>
 
 🔥 <b>GTA VI</b>
-Rockstar mengkonfirmasi rilis di 2025. Berlatar di Miami, dua karakter utama, open world yang revolusioner.
+Rockstar Games mengkonfirmasi rilis di 2025. Berlatar di Miami, dua karakter utama yang dapat ditukar, open world yang revolusioner dengan teknologi terbaru.
 
 🔥 <b>Nintendo Switch 2</b>
-Rilis di 2025. Kompatibilitas mundur, layar yang ditingkatkan, Joy-Con baru dengan pemasangan magnetik.
+Konsol generasi baru telah rilis di 2025. Kompatibilitas mundur dengan library Switch, layar OLED yang ditingkatkan, Joy-Con baru dengan fitur magnetik.
 
 🔥 <b>Xbox Game Pass</b>
-Microsoft terus menambahkan game AAA di hari rilis. Salah satu layanan terbaik untuk gamer.
+Microsoft terus menambahkan game AAA di hari rilis. Koleksi terus berkembang dengan franchise besar dari studio Microsoft dan partner lainnya.
 
-🔥 <b>Indie Scene</b>
-2024-2025 adalah era emas indie. Pantau Steam Next Fest — selalu ada permata baru di sana."""
+🔥 <b>Indie Scene 2025</b>
+Era emas game indie terus berlanjut. Steam Next Fest menampilkan ratusan game indie berkualitas tinggi yang patut untuk dicoba."""
+
+ABOUT_TEXT = """<b>Tentang Bot Ini</b>
+
+Bot gaming ini dibuat untuk memberikan informasi mendalam tentang dunia gaming tanpa iklan komersial atau sponsor yang mengganggu.
+
+<b>Konten Kami:</b>
+✓ Ulasan game yang objektif dan detail
+✓ Tips gameplay dari pemain berpengalaman
+✓ Berita industri gaming terkini
+✓ Rekomendasi game berdasarkan preferensi
+
+<b>Komitmen Kami:</b>
+Memberikan konten berkualitas yang benar-benar membantu gamer menemukan game favorit mereka dan meningkatkan pengalaman bermain.
+
+Setiap konten dikurasi dengan cermat oleh tim yang passionate tentang gaming."""
+
+CONTACT_TEXT = """<b>Hubungi Kami</b>
+
+Untuk pertanyaan, saran, atau feedback tentang bot ini:
+
+📧 Email: contact@gameaibot.com
+🔗 Telegram Channel: t.me/GameAIBot
+💬 Support: @GameAIBot_Support
+
+Kami menghargai setiap masukan dari komunitas gaming kami. Feedback kamu membantu kami terus berkembang dan memberikan konten yang lebih baik.
+
+Bergabunglah dengan komunitas gamer kami dan dapatkan update terbaru tentang game dan tips gaming!"""
+
+HELP_TEXT = """<b>Apa yang Bisa Bot Lakukan?</b>
+
+Bot ini menyediakan berbagai fitur untuk membantu perjalanan gaming kamu:
+
+🕹️ <b>Ulasan Game</b> — Dapatkan ulasan mendalam tentang game populer dengan rating dan detail gameplay
+
+📖 <b>Tips & Panduan</b> — Pelajari tips dari pemain berpengalaman untuk meningkatkan skill kamu
+
+📰 <b>Berita Gaming</b> — Tetap update dengan berita terbaru dari dunia gaming dan industri game
+
+ℹ️ <b>Tentang Bot</b> — Pelajari lebih lanjut tentang misi dan komitmen bot ini
+
+📞 <b>Hubungi Kami</b> — Temukan cara untuk menghubungi tim kami atau bergabung dengan komunitas
+
+Gunakan menu di bawah untuk mengakses fitur-fitur ini dan nikmati pengalaman gaming yang lebih baik!"""
 
 
 def start_kb():
@@ -80,9 +130,12 @@ def start_kb():
 def main_menu_kb():
     kb = InlineKeyboardMarkup(row_width=2)
     kb.add(
-        InlineKeyboardButton("🕹 Ulasan Game", callback_data="reviews"),
-        InlineKeyboardButton("📖 Tips & Panduan", callback_data="guides"),
-        InlineKeyboardButton("📰 Berita Gaming", callback_data="news"),
+        InlineKeyboardButton("🕹 Ulasan game", callback_data="reviews"),
+        InlineKeyboardButton("📖 Tips & panduan", callback_data="guides"),
+        InlineKeyboardButton("📰 Berita gaming", callback_data="news"),
+        InlineKeyboardButton("ℹ️ Tentang bot", callback_data="about"),
+        InlineKeyboardButton("📞 Hubungi kami", callback_data="contact"),
+        InlineKeyboardButton("❓ Apa yang bisa bot?", callback_data="help"),
     )
     return kb
 
@@ -114,6 +167,21 @@ async def cb_guides(callback: types.CallbackQuery):
 @dp.callback_query_handler(lambda c: c.data == "news")
 async def cb_news(callback: types.CallbackQuery):
     await callback.message.answer(NEWS_TEXT, parse_mode="HTML", reply_markup=back_kb())
+    await callback.answer()
+
+@dp.callback_query_handler(lambda c: c.data == "about")
+async def cb_about(callback: types.CallbackQuery):
+    await callback.message.answer(ABOUT_TEXT, parse_mode="HTML", reply_markup=back_kb())
+    await callback.answer()
+
+@dp.callback_query_handler(lambda c: c.data == "contact")
+async def cb_contact(callback: types.CallbackQuery):
+    await callback.message.answer(CONTACT_TEXT, parse_mode="HTML", reply_markup=back_kb())
+    await callback.answer()
+
+@dp.callback_query_handler(lambda c: c.data == "help")
+async def cb_help(callback: types.CallbackQuery):
+    await callback.message.answer(HELP_TEXT, parse_mode="HTML", reply_markup=back_kb())
     await callback.answer()
 
 @dp.message_handler()
